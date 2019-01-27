@@ -6,6 +6,7 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/ifraixedes/go-payments-api-example/payment"
+	"github.com/ifraixedes/go-payments-api-example/payment/internal/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -56,7 +57,7 @@ func TestNewFilter(t *testing.T) {
 				r:  fnuid,
 			},
 			assert: func(t *testing.T, tc tcase, f payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterLogicalOpNotExists, payment.ErrMDArg("op", tc.args.op))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterLogicalOpNotExists, payment.ErrMDArg("op", tc.args.op))
 			},
 		},
 		{
@@ -67,7 +68,7 @@ func TestNewFilter(t *testing.T) {
 				r:  fnuid,
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterNodeEmpty, payment.ErrMDArg("left", tc.args.l))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterNodeEmpty, payment.ErrMDArg("left", tc.args.l))
 			},
 		},
 		{
@@ -78,7 +79,7 @@ func TestNewFilter(t *testing.T) {
 				r:  payment.Filter{},
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterNodeEmpty, payment.ErrMDArg("right", tc.args.r))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterNodeEmpty, payment.ErrMDArg("right", tc.args.r))
 			},
 		},
 	}
@@ -224,7 +225,7 @@ func TestNewFilterByAmount(t *testing.T) {
 				val: rand.Float64(),
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterCmpNotSupported, payment.ErrMDArg("cmp", tc.args.cmp))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterCmpNotSupported, payment.ErrMDArg("cmp", tc.args.cmp))
 			},
 		},
 		{
@@ -234,7 +235,7 @@ func TestNewFilterByAmount(t *testing.T) {
 				val: rand.Float64(),
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterCmpNotExists, payment.ErrMDArg("cmp", tc.args.cmp))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterCmpNotExists, payment.ErrMDArg("cmp", tc.args.cmp))
 			},
 		},
 	}
@@ -293,7 +294,7 @@ func TestNewFilterByID(t *testing.T) {
 				val: uuid.Must(uuid.NewV4()),
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterCmpNotSupported, payment.ErrMDArg("cmp", tc.args.cmp))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterCmpNotSupported, payment.ErrMDArg("cmp", tc.args.cmp))
 			},
 		},
 		{
@@ -303,7 +304,7 @@ func TestNewFilterByID(t *testing.T) {
 				val: uuid.Must(uuid.NewV4()),
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterCmpNotExists, payment.ErrMDArg("cmp", tc.args.cmp))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterCmpNotExists, payment.ErrMDArg("cmp", tc.args.cmp))
 			},
 		},
 	}
@@ -362,7 +363,7 @@ func TestNewFilterByType(t *testing.T) {
 				val: "Payment",
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterCmpNotSupported, payment.ErrMDArg("cmp", tc.args.cmp))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterCmpNotSupported, payment.ErrMDArg("cmp", tc.args.cmp))
 			},
 		},
 		{
@@ -372,7 +373,7 @@ func TestNewFilterByType(t *testing.T) {
 				val: "Transfer",
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterCmpNotExists, payment.ErrMDArg("cmp", tc.args.cmp))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterCmpNotExists, payment.ErrMDArg("cmp", tc.args.cmp))
 			},
 		},
 		{
@@ -382,7 +383,7 @@ func TestNewFilterByType(t *testing.T) {
 				val: "Transfer",
 			},
 			assert: func(t *testing.T, tc tcase, _ payment.Filter, err error) {
-				assertError(t, err, payment.ErrInvalidArgFilterValue, payment.ErrMDArg("val", tc.args.val))
+				testutil.AssertError(t, err, payment.ErrInvalidArgFilterValue, payment.ErrMDArg("val", tc.args.val))
 			},
 		},
 	}

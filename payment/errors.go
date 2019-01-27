@@ -22,6 +22,7 @@ const (
 	ErrNotFound
 
 	ErrUnexpectedStoreError
+	ErrUnexpectedOSError
 )
 
 func (c code) String() string {
@@ -44,6 +45,8 @@ func (c code) String() string {
 		return "NotFound"
 	case ErrUnexpectedStoreError:
 		return "UnexpectedStoreError"
+	case ErrUnexpectedOSError:
+		return "UnexpectedOSError"
 	}
 
 	return ""
@@ -69,6 +72,8 @@ func (c code) Message() string {
 		return "The entity was not found"
 	case ErrUnexpectedStoreError:
 		return "The store has returned an unexpected error"
+	case ErrUnexpectedOSError:
+		return "An unexpected error has been returned when perfoming an operative system operation"
 	}
 
 	return ""
@@ -80,5 +85,28 @@ func ErrMDArg(name string, val interface{}) errors.MD {
 	return errors.MD{
 		K: fmt.Sprintf("arg:%s", name),
 		V: val,
+	}
+}
+
+// ErrMDVar creates a new metdata from a variable whose name and value are
+// relevant for the error to create.
+// When the variable is not exposed, the name should be meaningful to the
+// user/developer/ops when reading the verbose version of the error.
+func ErrMDVar(name string, val interface{}) errors.MD {
+	return errors.MD{
+		K: fmt.Sprintf("var:%s", name),
+		V: val,
+	}
+}
+
+// ErrMDFnCall creates a new metadata to inform the function which has been
+// called and with which arguments.
+// This metadata is intended to be used for internal function calls, so the
+// user isn't aware of those and when they return an error code which isn't
+// enough concrete to let inform the user what specifically happened.
+func ErrMDFnCall(fname string, args ...interface{}) errors.MD {
+	return errors.MD{
+		K: fmt.Sprintf("func:%s", fname),
+		V: fmt.Sprintf("%+v", args),
 	}
 }

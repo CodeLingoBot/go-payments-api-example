@@ -1,3 +1,5 @@
+github.com/bvinc/go-sqlite-lite v0.4.2 h1:J4N0EWVopvxgXo2nabRd93yoKTJjxZnBB3w08OtfgZY=
+github.com/bvinc/go-sqlite-lite v0.4.2/go.mod h1:2GiE60NUdb0aNhDdY+LXgrqAVDpi2Ijc6dB6ZMp9x6s=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/gofrs/uuid v3.1.0+incompatible h1:q2rtkjaKT4YEr6E1kamy0Ha4RtepWlQBedyHx0uzKwA=

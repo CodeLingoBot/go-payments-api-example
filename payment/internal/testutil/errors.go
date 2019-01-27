@@ -1,4 +1,4 @@
-package payment_test
+package testutil
 
 import (
 	"fmt"
@@ -8,8 +8,13 @@ import (
 	"go.fraixed.es/errors"
 )
 
-func assertError(t *testing.T, err error, c errors.Code, mds ...errors.MD) bool {
+// AssertError asserts if err has the c error code and mds metadata.
+func AssertError(t *testing.T, err error, c errors.Code, mds ...errors.MD) bool {
 	t.Helper()
+
+	if !assert.Error(t, err) {
+		return false
+	}
 
 	if !assert.True(t, errors.Is(err, c), "unexpected error code") {
 		return false
