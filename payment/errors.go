@@ -19,6 +19,10 @@ const (
 
 	ErrInvalidArgVersionMismatch
 
+	ErrInvalidPaymentOrgID
+	ErrInvalidPaymentType
+	ErrInvalidPaymentAttrPaymentID
+
 	ErrNotFound
 
 	ErrUnexpectedStoreError
@@ -41,6 +45,12 @@ func (c code) String() string {
 		return "InvalidArgFilterValue"
 	case ErrInvalidArgVersionMismatch:
 		return "InvalidArgVersionMismatch"
+	case ErrInvalidPaymentOrgID:
+		return "InvalidPaymentOgID"
+	case ErrInvalidPaymentType:
+		return "InvalidPaymentType"
+	case ErrInvalidPaymentAttrPaymentID:
+		return "InvalidPaymentAttrPaymentID"
 	case ErrNotFound:
 		return "NotFound"
 	case ErrUnexpectedStoreError:
@@ -68,6 +78,12 @@ func (c code) Message() string {
 		return "The filter value isn't a valid one"
 	case ErrInvalidArgVersionMismatch:
 		return "The provided version doesn't match with the current one"
+	case ErrInvalidPaymentOrgID:
+		return "Invalid payment because its organisation ID is not valid"
+	case ErrInvalidPaymentType:
+		return "Invalid payment because its type value is not valid"
+	case ErrInvalidPaymentAttrPaymentID:
+		return "Invalid payment because the payment ID value of its attributes is not valid"
 	case ErrNotFound:
 		return "The entity was not found"
 	case ErrUnexpectedStoreError:
@@ -108,5 +124,14 @@ func ErrMDFnCall(fname string, args ...interface{}) errors.MD {
 	return errors.MD{
 		K: fmt.Sprintf("func:%s", fname),
 		V: fmt.Sprintf("%+v", args),
+	}
+}
+
+// ErrMDField creates a new metadata from a struct field whose name and value
+// are relevant for the error to create.
+func ErrMDField(name string, val interface{}) errors.MD {
+	return errors.MD{
+		K: fmt.Sprintf("field:%s", name),
+		V: val,
 	}
 }

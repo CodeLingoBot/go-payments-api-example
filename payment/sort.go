@@ -15,11 +15,11 @@ const (
 // The payment's fields which aren't present aren't allowed to be used for
 // sorting.
 type Sort struct {
-	Type           SortDir
-	ID             SortDir
-	Version        SortDir
-	OrganisationID SortDir
-	Attributes     SortAttributes
+	Type       SortDir
+	ID         SortDir
+	Version    SortDir
+	OrgID      SortDir
+	Attributes SortAttributes
 }
 
 // SortAttributes is the type of the Attributes field of the Sort type.

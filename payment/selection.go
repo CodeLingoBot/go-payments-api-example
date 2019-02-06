@@ -5,10 +5,10 @@ package payment
 // Each file is a boolean, when it's true, the value is retrieved otherwise it
 // won't be.
 type Selection struct {
-	Type           bool
-	Version        bool
-	OrganisationID bool
-	Attributes     SelectionAttributes
+	Version    bool
+	Type       bool
+	OrgID      bool
+	Attributes SelectionAttributes
 }
 
 // SelectionAttributes is the type of the Attributes field of the Selection type.
