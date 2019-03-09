@@ -57,6 +57,8 @@ type FilterLeaf interface {
 //
 // You can see it as any boolean logical operation used in conditionals in the
 // majority of programming languages.
+//
+// The zero value is a noop filter.
 type Filter struct {
 	left  *Filter
 	right *Filter
@@ -64,7 +66,8 @@ type Filter struct {
 	op    FilterLogical
 }
 
-// NodeType returns the type of this node.
+// NodeType returns the type of this node. Zero value returns
+// FilterNodeTypeEmpty.
 func (f Filter) NodeType() FilterNodeType {
 	switch {
 	case f.op == filterLogicalNoop && f.l == nil:

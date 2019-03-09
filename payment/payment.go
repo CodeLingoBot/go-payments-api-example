@@ -24,7 +24,7 @@ type PymtUpsert struct {
 // Validate validates that the input payment contains all the required values
 // and their values respect the requirments of the business domain.
 func (p PymtUpsert) Validate() error {
-	// TODO:  won't be implemented
+	// TODO: won't be implemented
 	// Some other fields should be also validated.
 
 	if p.OrgID == uuid.Nil {

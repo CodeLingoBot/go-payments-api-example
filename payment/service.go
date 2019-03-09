@@ -24,6 +24,7 @@ type Service interface {
 
 	// Find retrieve list of payments which fulfill f, sorted by o and chunked by
 	// c. Each payment only contains the fields indicated by s.
+	//
 	// If there is not payments which fulfill f or the chunk specified by p is out
 	// of range, an empty list and nil error are returned.
 	Find(ctx context.Context, f Filter, s Selection, o Sort, c Chunk) ([]Pymt, error)
