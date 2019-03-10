@@ -31,3 +31,34 @@ type SelectionAttributes struct {
 	ChargesInformation   bool
 	Fx                   bool
 }
+
+// SelectAll returns the value which indicates to retrieve all the fields of a
+// payment.
+func SelectAll() Selection {
+	return selectionAll
+}
+
+var selectionAll = Selection{
+	Type:    true,
+	Version: true,
+	OrgID:   true,
+	Attributes: SelectionAttributes{
+		Amount:               true,
+		Currency:             true,
+		Reference:            true,
+		EndToEndReference:    true,
+		NumericReference:     true,
+		PaymentID:            true,
+		PaymentPurpose:       true,
+		PaymentScheme:        true,
+		PaymentType:          true,
+		ProcessingDate:       true,
+		SchemePaymentSubType: true,
+		SchemePaymentType:    true,
+		BeneficiaryParty:     true,
+		DebtorParty:          true,
+		SponsorParty:         true,
+		ChargesInformation:   true,
+		Fx:                   true,
+	},
+}
